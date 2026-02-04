@@ -1,9 +1,11 @@
+console.log(axios);
+
 document.addEventListener('DOMContentLoaded', function(){
 
     const registerForm = document.querySelector("#register-user");
 
     
-    registerForm.addEventListener("submit", function(event){
+    registerForm.addEventListener("submit", async function(event){
         event.preventDefault();
 
         let firstname = this.fname.value.trim();
@@ -19,7 +21,14 @@ document.addEventListener('DOMContentLoaded', function(){
         }else{
 
             // send a request to the server
-            
+            let feedback = await axios.post("http://localhost:5353/register", {
+                firstname: firstname, 
+                lastname: lastname,
+                password: password,
+                email: email
+            });
+
+            console.log("Feedback --> ", feedback)
 
 
         }
